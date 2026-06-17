@@ -1,14 +1,11 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { chatReducer, initialState } from './ChatReducer';
 
-// 1. Crear el contexto
 const ChatContext = createContext();
 
-// 2. Crear el Provider
 export const ChatProvider = ({ children }) => {
   const [state, dispatch] = useReducer(chatReducer, initialState);
 
-  // Funciones de utilidad para despachar acciones
   const addMessage = (message) => {
     dispatch({ type: 'ADD_MESSAGE', payload: message });
   };
@@ -37,7 +34,6 @@ export const ChatProvider = ({ children }) => {
     dispatch({ type: 'SET_ERROR', payload: error });
   };
 
-  // Valor del contexto
   const value = {
     state,
     dispatch,
@@ -57,7 +53,6 @@ export const ChatProvider = ({ children }) => {
   );
 };
 
-// 3. Custom hook para usar el contexto
 export const useChat = () => {
   const context = useContext(ChatContext);
   if (!context) {
