@@ -1,11 +1,22 @@
 import React from 'react';
-import { useGlobalContext } from '../../context/GlobalContext';
+import { useChat } from '../../context/ChatContext';
 
 const HistoryPanel = () => {
-  const { state, clearChat } = useGlobalContext();
+  const { state, loadConversation, deleteConversation, startNewChat } = useChat();
 
   const formatDate = (timestamp) => {
     return new Date(timestamp).toLocaleString();
+  };
+
+  const handleLoadConversation = (conversation) => {
+    loadConversation(conversation);
+  };
+
+  const handleDeleteConversation = (id, e) => {
+    e.stopPropagation();
+    if (window.confirm('¿Eliminar esta conversación?')) {
+      deleteConversation(id);
+    }
   };
 
   return (
@@ -13,10 +24,10 @@ const HistoryPanel = () => {
       <div className="p-4 border-b">
         <h2 className="text-lg font-semibold">Historial</h2>
         <button
-          onClick={clearChat}
-          className="text-sm text-red-600 hover:text-red-800 mt-1"
+          onClick={startNewChat}
+          className="text-sm text-green-600 hover:text-green-800 mt-1"
         >
-          Limpiar chat
+          + Nueva conversación
         </button>
       </div>
 
@@ -26,13 +37,14 @@ const HistoryPanel = () => {
             No hay conversaciones previas
           </p>
         ) : (
-          state.history.map((item, index) => (
+          state.history.map((item) => (
             <div
-              key={index}
-              className="p-3 mb-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+              key={item.id}
+              onClick={() => handleLoadConversation(item)}
+              className="p-3 mb-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer group relative"
             >
               <p className="text-sm font-medium truncate">
-                {item.messages[0]?.content || 'Conversación'}
+                {item.title || 'Conversación'}
               </p>
               <p className="text-xs text-gray-500 mt-1">
                 {formatDate(item.timestamp)}
@@ -40,6 +52,12 @@ const HistoryPanel = () => {
               <p className="text-xs text-gray-400">
                 {item.messages.length} mensajes
               </p>
+              <button
+                onClick={(e) => handleDeleteConversation(item.id, e)}
+                className="absolute top-1 right-1 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                ✕
+              </button>
             </div>
           ))
         )}
