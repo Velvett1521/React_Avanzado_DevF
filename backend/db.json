@@ -1,0 +1,192 @@
+{
+  "messages": [
+    {
+      "id": "1781667784291",
+      "role": "user",
+      "content": "hola",
+      "timestamp": "2026-06-17T03:43:04.291Z"
+    },
+    {
+      "id": "1781667784310",
+      "role": "assistant",
+      "content": "¡Hola! How can I assist you today? If you have any questions or need help with something, feel free to ask. 😊",
+      "timestamp": "2026-06-17T03:43:04.309Z"
+    },
+    {
+      "id": "1781667822625",
+      "role": "user",
+      "content": "hola",
+      "timestamp": "2026-06-17T03:43:42.625Z"
+    },
+    {
+      "id": "1781667822642",
+      "role": "assistant",
+      "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+      "timestamp": "2026-06-17T03:43:42.641Z"
+    },
+    {
+      "id": "1781667928192",
+      "role": "user",
+      "content": "hola",
+      "timestamp": "2026-06-17T03:45:28.192Z"
+    },
+    {
+      "id": "1781667928215",
+      "role": "assistant",
+      "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+      "timestamp": "2026-06-17T03:45:28.214Z"
+    },
+    {
+      "id": "1781668086283",
+      "role": "user",
+      "content": "hola",
+      "timestamp": "2026-06-17T03:48:06.283Z"
+    },
+    {
+      "id": "1781668086303",
+      "role": "assistant",
+      "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+      "timestamp": "2026-06-17T03:48:06.302Z"
+    },
+    {
+      "id": "1781668186862",
+      "role": "user",
+      "content": "como estas?",
+      "timestamp": "2026-06-17T03:49:46.862Z"
+    },
+    {
+      "id": "1781668186879",
+      "role": "assistant",
+      "content": "¡Claro que tengo la calma! ¿En qué puedo ayudarte hoy?",
+      "timestamp": "2026-06-17T03:49:46.878Z"
+    }
+  ],
+  "currentChat": [],
+  "conversations": [
+    {
+      "id": 1781668191573,
+      "messages": [
+        {
+          "role": "user",
+          "content": "como estas?"
+        },
+        {
+          "role": "assistant",
+          "content": "¡Claro que tengo la calma! ¿En qué puedo ayudarte hoy?"
+        }
+      ],
+      "timestamp": "2026-06-17T03:49:51.573Z",
+      "title": "como estas?"
+    },
+    {
+      "id": 1781668181517,
+      "messages": [
+        {
+          "id": "1781667784291",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:43:04.291Z"
+        },
+        {
+          "id": "1781667784310",
+          "role": "assistant",
+          "content": "¡Hola! How can I assist you today? If you have any questions or need help with something, feel free to ask. 😊",
+          "timestamp": "2026-06-17T03:43:04.309Z"
+        },
+        {
+          "id": "1781667822625",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:43:42.625Z"
+        },
+        {
+          "id": "1781667822642",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:43:42.641Z"
+        },
+        {
+          "id": "1781667928192",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:45:28.192Z"
+        },
+        {
+          "id": "1781667928215",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:45:28.214Z"
+        },
+        {
+          "id": "1781668086283",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:48:06.283Z"
+        },
+        {
+          "id": "1781668086303",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:48:06.302Z"
+        }
+      ],
+      "timestamp": "2026-06-17T03:49:41.517Z",
+      "title": "hola"
+    },
+    {
+      "id": 1781668176320,
+      "messages": [
+        {
+          "id": "1781667784291",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:43:04.291Z"
+        },
+        {
+          "id": "1781667784310",
+          "role": "assistant",
+          "content": "¡Hola! How can I assist you today? If you have any questions or need help with something, feel free to ask. 😊",
+          "timestamp": "2026-06-17T03:43:04.309Z"
+        },
+        {
+          "id": "1781667822625",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:43:42.625Z"
+        },
+        {
+          "id": "1781667822642",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:43:42.641Z"
+        },
+        {
+          "id": "1781667928192",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:45:28.192Z"
+        },
+        {
+          "id": "1781667928215",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:45:28.214Z"
+        },
+        {
+          "id": "1781668086283",
+          "role": "user",
+          "content": "hola",
+          "timestamp": "2026-06-17T03:48:06.283Z"
+        },
+        {
+          "id": "1781668086303",
+          "role": "assistant",
+          "content": "¡Hola! ¿En qué puedo ayudarte hoy? 😊",
+          "timestamp": "2026-06-17T03:48:06.302Z"
+        }
+      ],
+      "timestamp": "2026-06-17T03:49:36.320Z",
+      "title": "hola"
+    }
+  ]
+}

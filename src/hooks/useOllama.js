@@ -1,33 +1,47 @@
+// frontend/src/hooks/useOllama.js
 import { useState, useCallback } from 'react';
-import { ollamaService } from '../api/ollama';
+import { chatService } from '../services/chatService';
 
 export const useOllama = (model = 'deepseek-r1:1.5b') => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState('');
 
-  const sendMessage = useCallback(async (messages) => {
+  const sendMessage = useCallback(async (prompt) => {
     setLoading(true);
     setError(null);
     setResponse('');
 
     try {
-      const result = await ollamaService.sendMessage(model, messages);
-      setResponse(result);
-      return result;
+      console.log('📤 Enviando mensaje a Ollama...');
+      const result = await chatService.askOllama(prompt, model);
+      console.log('📥 Resultado:', result);
+      
+      if (result.success) {
+        setResponse(result.response);
+        return result.response;
+      } else {
+        throw new Error(result.error || 'Error al obtener respuesta');
+      }
     } catch (err) {
-      setError(err.message || 'Error al enviar mensaje');
+      console.error('❌ Error en sendMessage:', err);
+      const errorMsg = err.message || 'Error al enviar mensaje';
+      setError(errorMsg);
       throw err;
     } finally {
       setLoading(false);
     }
   }, [model]);
 
+  const clearResponse = useCallback(() => {
+    setResponse('');
+  }, []);
+
   return {
     sendMessage,
     loading,
     error,
     response,
-    clearResponse: () => setResponse(''),
+    clearResponse,
   };
 };

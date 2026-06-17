@@ -1,6 +1,3 @@
-// src/context/ChatReducer.js
-
-// === PERSISTENCIA ===
 const loadStateFromStorage = () => {
   try {
     const storedState = localStorage.getItem('devfseek_chat_state');
@@ -28,18 +25,8 @@ const loadStateFromStorage = () => {
   };
 };
 
-const saveToLocalStorage = (state) => {
-  try {
-    localStorage.setItem('devfseek_chat_state', JSON.stringify(state));
-  } catch (error) {
-    console.error('Error al guardar:', error);
-  }
-};
-
-// === ESTADO INICIAL ===
 export const initialState = loadStateFromStorage();
 
-// === TIPOS DE ACCIONES ===
 export const ACTION_TYPES = {
   ADD_MESSAGE: 'ADD_MESSAGE',
   LOAD_CONVERSATION: 'LOAD_CONVERSATION',
@@ -51,7 +38,14 @@ export const ACTION_TYPES = {
   SET_MODEL: 'SET_MODEL',
 };
 
-// === REDUCER ===
+const saveToLocalStorage = (state) => {
+  try {
+    localStorage.setItem('devfseek_chat_state', JSON.stringify(state));
+  } catch (error) {
+    console.error('Error al guardar en localStorage:', error);
+  }
+};
+
 export const chatReducer = (state, action) => {
   let newState;
 
@@ -91,24 +85,24 @@ export const chatReducer = (state, action) => {
       return newState;
 
     case ACTION_TYPES.START_NEW_CHAT:
-      let updatedHistory = [...state.history];
-      if (state.messages.length > 0) {
-        const conversation = {
-          id: Date.now(),
-          messages: [...state.messages],
-          timestamp: new Date().toISOString(),
-          title: state.messages[0]?.content?.substring(0, 30) + '...' || 'Nueva conversación',
-        };
-        updatedHistory = [conversation, ...state.history];
-      }
-      newState = {
-        ...state,
-        messages: [],
-        history: updatedHistory,
-        currentChatId: null,
-      };
-      saveToLocalStorage(newState);
-      return newState;
+  let updatedHistory = [...state.history];
+  if (state.messages.length > 0) {
+    const conversation = {
+      id: Date.now(),
+      messages: [...state.messages],
+      timestamp: new Date().toISOString(),
+      title: state.messages[0]?.content?.substring(0, 30) + '...' || 'Nueva conversación',
+    };
+    updatedHistory = [conversation, ...state.history];
+  }
+  newState = {
+    ...state,
+    messages: [],
+    history: updatedHistory,
+    currentChatId: null,
+  };
+  saveToLocalStorage(newState);
+  return newState;
 
     case ACTION_TYPES.SET_LOADING:
       return {
