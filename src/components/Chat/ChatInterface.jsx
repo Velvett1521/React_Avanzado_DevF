@@ -1,64 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useGlobalContext } from '../../context/GlobalContext';
+import React, { useState } from 'react';
+import { useChat } from '../../context/ChatContext';
 import { useOllama } from '../../hooks/useOllama';
 import MessageList from './MessageList';
 import LoadingSpinner from '../common/LoadingSpinner';
 
 const ChatInterface = () => {
-  const { state, addMessage, saveHistory, startNewChat } = useGlobalContext();
+  // Usar el contexto
+  const { state, addMessage, startNewChat, setError } = useChat();
   const [input, setInput] = useState('');
-  const { sendMessage, loading, error } = useOllama(state.model);
-
-  // Guardar historial automáticamente cuando hay mensajes
-  useEffect(() => {
-    if (state.messages.length > 0 && !state.loading) {
-      // Guardar después de recibir respuesta
-      const lastMessage = state.messages[state.messages.length - 1];
-      if (lastMessage?.role === 'assistant') {
-        saveHistory();
-      }
-    }
-  }, [state.messages, state.loading]);
+  const { sendMessage, loading } = useOllama(state.model);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || loading) return;
 
-    // Agregar mensaje del usuario
     const userMessage = { role: 'user', content: input };
     addMessage(userMessage);
     setInput('');
 
     try {
-      // Preparar historial para Ollama
       const history = state.messages.map(msg => ({
         role: msg.role,
         content: msg.content
       }));
       history.push(userMessage);
 
-      // Obtener respuesta
       const response = await sendMessage(history);
-      
-      // Agregar respuesta al estado
       addMessage({ role: 'assistant', content: response });
-      
-      // El historial se guarda automáticamente con el useEffect
     } catch (err) {
-      console.error('Error:', err);
+      setError(err.message || 'Error al enviar mensaje');
     }
   };
 
   const handleNewChat = () => {
     if (state.messages.length > 0) {
-      if (window.confirm('¿Guardar la conversación actual antes de empezar una nueva?')) {
-        startNewChat();
-      } else {
-        // Limpiar sin guardar
-        state.messages = [];
-        // Forzar actualización
-        window.location.reload(); // Opcional: mejor usar un estado de actualización
-      }
+      startNewChat();
     }
   };
 
@@ -76,9 +52,9 @@ const ChatInterface = () => {
         </div>
         <MessageList messages={state.messages} />
         {loading && <LoadingSpinner />}
-        {error && (
+        {state.error && (
           <div className="text-red-500 p-4 bg-red-50 rounded-lg">
-            Error: {error}
+            Error: {state.error}
           </div>
         )}
       </div>
